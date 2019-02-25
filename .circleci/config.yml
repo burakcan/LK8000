@@ -7,7 +7,7 @@ jobs:
     - checkout
     - run:
         name: Install croostool-ng
-        command: 'wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.23.0.tar.bz2 && 
+        command: 'apt-get install -y wget tar && wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.23.0.tar.bz2 && 
           tar xjf crosstool-ng-1.23.0.tar.bz2 &&
           cd crosstool-ng-1.23.0 &&
           ./configure --prefix=/usr/bin &&
