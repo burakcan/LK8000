@@ -8,7 +8,7 @@ jobs:
     - run:
         name: Install croostool-ng
         command: 'apt-get update && 
-          apt-get install -y wget tar build-essential &&
+          apt-get install -y wget tar build-essential gperf bison flex texinfo &&
           wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.23.0.tar.bz2 && 
           tar xjf crosstool-ng-1.23.0.tar.bz2 &&
           cd crosstool-ng-1.23.0 &&
