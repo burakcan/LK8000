@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+    - image: debian:stretch
+    steps:
+    - checkout
+    - run:
+        name: Install dependencies
+        command: 'apt-get update && apt-get install -y build-essential pkg-config libsdl2-dev
+          libsdl2-mixer-dev libzzip-dev libboost-dev libfreetype6-dev libpng-dev libgeographic-dev
+          xsltproc imagemagick ttf-dejavu zip libgl1-mesa-dev libegl1-mesa-dev libx11-dev
+          libasound2-dev libsndfile1-dev && rm -rf /var/lib/apt/lists/*'
+    - run:
+        name: Install croostool-ng
+        command: 'wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.23.0.tar.bz2 && 
+          tar xjf crosstool-ng-1.23.0.tar.bz2 &&
+          cd crosstool-ng-1.23.0 &&
+          ./configure --prefix=/usr/bin &&
+          make && make install &&
+          export PATH="${PATH}:/usr/bin" && cd ../'
+    - run:
+        name: Build
+        command: 'make TARGET=KOBO'
+      
+workflows:
+  version: 2
+  workflow:
+    jobs:
+    - build
